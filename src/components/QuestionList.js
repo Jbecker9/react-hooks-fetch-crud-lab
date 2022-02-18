@@ -8,19 +8,24 @@ function QuestionList({ renderQuestions, questions }) {
     fetch("http://localhost:4000/questions")
       .then((r)=>r.json())
       .then((questionData) => renderQuestions(questionData))
-  }, [])
+  }, [renderQuestions])
 
   function addDelState(prop){
     const newDelArr = questions.filter((question) => question.id !== prop.id)
     renderQuestions(newDelArr)
   }
 
+  function addNewAnswer(prop){
+    const answerArray = questions.filter((question)=> question.id !== prop.id)
+    const newAnswerArray = [...answerArray, prop]
+    renderQuestions(newAnswerArray)
+  }
 
   return (
     <section>
       <h1>Quiz Questions</h1>
         <ul>{questions.map((question)=>
-        <QuestionItem addDelState={(prop)=>addDelState(prop)}key={question.id} question={question}/>
+        <QuestionItem addNewAnswer={(prop)=>addNewAnswer(prop)}addDelState={(prop)=>addDelState(prop)}key={question.id} question={question}/>
         )}
         </ul>
     </section>

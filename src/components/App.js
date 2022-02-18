@@ -7,19 +7,19 @@ function App() {
   const [page, setPage] = useState("List");
   const [questions, setQuestions] = useState([])
 
-  function renderQuestions(prop){
-    setQuestions(prop)
+  function renderQuestions(props){
+    setQuestions(props)
   }
 
-  function updateQuestions(prop){
-    const newQuestionList = [...questions, prop]
+  function updateQuestions(props){
+    const newQuestionList = [...questions, props]
     setQuestions(newQuestionList)
   }
 
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm updateQuestions={(props) => updateQuestions(props)}/> : <QuestionList questions={questions} renderQuestions={(props) => renderQuestions(props)}/>}
+      {page === "Form" ? <QuestionForm updateQuestions={(props) => updateQuestions(props)}/> : <QuestionList questions={questions} renderQuestions={(props) => renderQuestions(props)} />}
     </main>
   );
 }
