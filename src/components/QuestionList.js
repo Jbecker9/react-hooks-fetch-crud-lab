@@ -8,7 +8,7 @@ function QuestionList({ renderQuestions, questions }) {
     fetch("http://localhost:4000/questions")
       .then((r)=>r.json())
       .then((questionData) => renderQuestions(questionData))
-  }, [renderQuestions])
+  }, [])
 
   function addDelState(prop){
     const newDelArr = questions.filter((question) => question.id !== prop.id)
